@@ -11,6 +11,8 @@
  *
  * This engine makes the canvas' context (ctx) object globally available to make 
  * writing app.js a little simpler to work with.
+
+ to add gems/points/extras checkout https://plus.google.com/u/0/events/cupbs3pbne7qkuqok4g0ldhntic?authkey=COGW25b5jbv3-AE
  */
 
 var Engine = (function(global) {
@@ -102,6 +104,7 @@ var Engine = (function(global) {
      * they are flipbooks creating the illusion of animation but in reality
      * they are just drawing the entire screen over and over.
      */
+
     function render() {
         /* This array holds the relative URL to the image used
          * for that particular row of the game level.
@@ -173,9 +176,9 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-cat-girl.png'
     ]);
-    Resources.onReady(init);
+    Resources.onReady(init); //how game begins -pt
 
     /* Assign the canvas' context object to the global variable (the window
      * object when run in a browser) so that developers can use it more easily

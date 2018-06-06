@@ -4,6 +4,8 @@
  * a simple "caching" layer so it will reuse cached images if you attempt
  * to load the same image multiple times.
  */
+
+ //this is an IIFE function that is immediately invoked -pt
 (function() {
     var resourceCache = {};
     var loading = [];
@@ -96,7 +98,7 @@
      * when all requested images are properly loaded.
      */
     function onReady(func) {
-        readyCallbacks.push(func);
+        readyCallbacks.push(func); //were pushing the initial function into the callback list
     }
 
     /* This object defines the publicly accessible functions available to
