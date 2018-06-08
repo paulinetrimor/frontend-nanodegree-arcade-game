@@ -15,18 +15,21 @@ Enemy.prototype.update = function(dt) {
 
     //set place and speed of enemy
     if (this.x > 510) {
-        this.x = -50;
+        this.x = -50; //we want the head of enemy to start at 0
         this.speed = 100 + Math.floor(Math.random() * 222);
 
     }
+
+
     //resets the player to starting block if killed by enemy
     if (player.x < this.x + 80 &&
         player.x + 80 > this.x &&
         player.y < this.y + 60 &&
-        60 + player.y < this.y) {
+        player.y + 60 > this.y) {
         player.x = 202;
         player.y = 405;
-     }
+    };
+
 
 };
 
@@ -35,9 +38,7 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+//player object and its properties
 var Player = function (x,y) {
     this.x = x;
     this.y = y;
@@ -56,24 +57,45 @@ Player.prototype.handleInput = function (keyPress) {
     if (keyPress == 'left' && this.x > 0) {
         this.x -= 102;
     }
-    if (keyPress = 'right' && this.x < 405) {
+    if (keyPress == 'right' && this.x < 405) {
         this.x += 102;
     }
-    if (keyPress = 'up' && this.y > 0) {
-        this.y == 83;
+    if (keyPress == 'up' && this.y > 0) {
+        this.y -= 83;
     }
-    if (keyPress = 'down' && this.y < 405) {
+    if (keyPress == 'down' && this.y < 405) {
         this.y += 83;
     }
     if (this.y < 0) {
         setTimeout(function () {
             player.x = 202;
             player.y = 405;
-        }, 600);
+        }, 100);
     }
 
 }
 
+var Gems = function(x,y) {
+    this.x = x;
+    this.y = y;
+    this.gems = 'images/Gem Blue.png';
+} 
+
+Gems.prototype.update = function() {
+    //update new location of gem if player reaches it
+    if (player.x < this.x + 80 &&
+        player.x + 80 > this.x &&
+        player.y < this.y + 60 &&
+        player.y + 60 > this.y) {
+        this.x = 550;
+        this.y = 620;
+        //call for new gem
+    };
+}
+
+Gems.prototype.render = function () {
+    ctx.drawImage(Resources.get(this.gems), this.x, this.y);
+}
 
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
@@ -87,6 +109,9 @@ enemyLocation.forEach(function (locationY) {
 })
 // Place the player object in a variable called player
 var player = new Player(202, 405);
+
+var gems = new Gems(202, 147);
+
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
