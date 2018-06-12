@@ -1,3 +1,28 @@
 body {
     text-align: center;
+    font-size: 100%;
+}
+h1{
+	text-align: center;
+	color: green;
+	font-weight: bold;
+	font-stretch: expanded;
+	font-family: fantasy;
+
+}
+h5{
+	color: green;
+	font
+}
+p{
+	display: inline;
+}
+
+.score{
+	display: inline-block;
+	width: 100px;
+}
+.lives{
+	display: inline-block;
+	width: 100px;
 }

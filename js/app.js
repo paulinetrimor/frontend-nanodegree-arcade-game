@@ -9,6 +9,8 @@ var Enemy = function(x,y,speed) {
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
+
+
 Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     this.x += this.speed * dt; 
@@ -20,7 +22,6 @@ Enemy.prototype.update = function(dt) {
 
     }
 
-
     //resets the player to starting block if killed by enemy
     if (player.x < this.x + 80 &&
         player.x + 80 > this.x &&
@@ -28,12 +29,36 @@ Enemy.prototype.update = function(dt) {
         player.y + 60 > this.y) {
         player.x = 202;
         player.y = 405;
+
+        //update life here
+        var life = document.getElementById("lives").textContent;
+        life = life--;
+        document.getElementById("lives").innerHTML = life;
+        
+
     };
 
+    if (player.x < locationColumn[arrayCol] + 80 &&
+        player.x + 80 > locationColumn[arrayCol] &&
+        player.y < locationRow[arrayRow] + 60 &&
+        player.y + 60 > locationRow[arrayRow]) {
+        
+        randFunc();
+        gems.x = locationColumn[arrayCol];
+        gems.y = locationRow[arrayRow];
+
+        //update the score
+        var score = document.getElementById("score").textContent;
+        score = score + 10;
+        document.getElementById("score").innerHTML = score;
+    };
+    
 
 };
 
-// Draw the enemy on the screen, required method for game
+
+
+// Draw the enemy on the screen
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
@@ -45,7 +70,7 @@ var Player = function (x,y) {
     this.player = 'images/char-cat-girl.png';
 }
 
-Player.prototype.update = function (dt) {
+Player.prototype.update = function () {
 
 }
 
@@ -75,27 +100,54 @@ Player.prototype.handleInput = function (keyPress) {
 
 }
 
-var Gems = function(x,y) {
-    this.x = x;
-    this.y = y;
+//declaring the variables for gems locations
+var locationColumn = [0, 100, 200, 300, 400, 200, 100]; 
+var locationRow = [0, 120, 220, 320, 420, 220, 320]; 
+var columnNum;
+var arrayCol;
+var rowNum;
+var arrayRow;
+
+//calculates a random location for the gem
+function randFunc(){
+    columnNum = Math.round(Math.random() * 10);
+    rowNum = Math.round(Math.random() * 10);
+    if(columnNum <= 5){
+        arrayCol = columnNum;
+    }
+    else{
+        arrayCol = columnNum - 5;
+    }
+    if(rowNum <= 4){
+        arrayRow = rowNum;
+    }
+    else{
+        arrayRow = rowNum - 5;
+    }
+
+};
+
+randFunc();
+
+
+var Gems = function() {
+    this.x = locationColumn[arrayCol];
+    this.y = locationRow[arrayRow];
     this.gems = 'images/Gem Blue.png';
 } 
 
-Gems.prototype.update = function() {
-    //update new location of gem if player reaches it
-    if (player.x < this.x + 80 &&
-        player.x + 80 > this.x &&
-        player.y < this.y + 60 &&
-        player.y + 60 > this.y) {
-        this.x = 550;
-        this.y = 620;
-        //call for new gem
-    };
-}
 
 Gems.prototype.render = function () {
-    ctx.drawImage(Resources.get(this.gems), this.x, this.y);
-}
+         ctx.drawImage(Resources.get(this.gems), this.x, this.y);
+};  
+
+
+Gems.prototype.reset = function(){
+    
+    randFunc();
+    gem.x = locationColumn[arrayCol];
+    gem.y = locationRow[arrayRow];
+};
 
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
@@ -106,11 +158,12 @@ var enemyLocation = [63, 147, 230];
 enemyLocation.forEach(function (locationY) {
     enemy = new Enemy(0, locationY, 200);
     allEnemies.push(enemy); //push into allEnemies array
-})
+});
+
 // Place the player object in a variable called player
 var player = new Player(202, 405);
+var gems = new Gems();
 
-var gems = new Gems(202, 147);
 
 
 // This listens for key presses and sends the keys to your
