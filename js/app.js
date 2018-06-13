@@ -32,10 +32,11 @@ Enemy.prototype.update = function(dt) {
 
         //update life here
         var life = document.getElementById("lives").textContent;
-        life = life--;
-        document.getElementById("lives").innerHTML = life;
-        
+        newLife = Number(life) - 1;
+        document.getElementById("lives").textContent = newLife;
 
+        //if life is 0, reset the game back tod efault numbers
+        
     };
 
     if (player.x < locationColumn[arrayCol] + 80 &&
@@ -49,10 +50,11 @@ Enemy.prototype.update = function(dt) {
 
         //update the score
         var score = document.getElementById("score").textContent;
-        score = score + 10;
-        document.getElementById("score").innerHTML = score;
+        newScore = Number(score) + 10;
+        document.getElementById("score").textContent = newScore;
     };
     
+
 
 };
 

@@ -1,28 +1,44 @@
 body {
     text-align: center;
     font-size: 100%;
+	background-image: url('https://chupacdn.s3.amazonaws.com/catalog/product/cache/1/thumbnail/1280x/17f82f742ffe127f42dca9de82fb58b1/6/-/6-vector-game-backgrounds-8003_imgs_8003.png');
 }
-h1{
-	text-align: center;
-	color: green;
-	font-weight: bold;
-	font-stretch: expanded;
-	font-family: fantasy;
 
+h1 {
+ font-family: 'Lobster', Georgia, Times, serif;
+ font-size: 45px;
+ background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+ height: 60px;
+ margin-top: : 0px;
+ margin-bottom: 0px;
 }
+
+ 
 h5{
-	color: green;
-	font
+	font-family: 'Lobster', Georgia, Times, serif;
+	font-size: 25px;
+	line-height: 0px;
+	background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	display: inline;
 }
-p{
+h6{
+	display: inline;
+	font-family: 'Lobster', Georgia, Times, serif;
+	font-size: 25px;
+	background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.score{
+	display: inline;
+	padding-right: 40px;
+}
+.lives{
 	display: inline;
 }
 
-.score{
-	display: inline-block;
-	width: 100px;
-}
-.lives{
-	display: inline-block;
-	width: 100px;
-}
+
