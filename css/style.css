@@ -6,11 +6,11 @@ body {
 
 h1 {
  font-family: 'Lobster', Georgia, Times, serif;
- font-size: 45px;
- background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+ font-size: 60px;
+ background: linear-gradient(to right, 	#8B008B 0%, #0000CD 100%);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
- height: 60px;
+ height: 80px;
  margin-top: : 0px;
  margin-bottom: 0px;
 }
@@ -20,7 +20,7 @@ h5{
 	font-family: 'Lobster', Georgia, Times, serif;
 	font-size: 25px;
 	line-height: 0px;
-	background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+	background: linear-gradient(to right, 	#8B008B 0%,#0000CD 100%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	display: inline;
@@ -29,7 +29,7 @@ h6{
 	display: inline;
 	font-family: 'Lobster', Georgia, Times, serif;
 	font-size: 25px;
-	background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+	background: linear-gradient(to right, 	#8B008B 0%, #0000CD 100%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
@@ -37,7 +37,7 @@ h6{
 	display: inline;
 	padding-right: 40px;
 }
-.lives{
+.levels{
 	display: inline;
 }
 

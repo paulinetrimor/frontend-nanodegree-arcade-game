@@ -158,8 +158,13 @@ var Engine = (function(global) {
             enemy.render();
         });
 
+        allHearts.forEach(function(hearts) {
+            hearts.render();
+        });
+
         player.render();
         gems.render();
+        
       
     }
 
@@ -182,7 +187,8 @@ var Engine = (function(global) {
         'images/enemy-bug.png',
         'images/char-cat-girl.png',
         'images/Gem Blue.png',
-        'images/Gem Green.png'
+        'images/Heart.png',
+        'images/background.jpg'
     ]);
     Resources.onReady(init); //how game begins -pt
 

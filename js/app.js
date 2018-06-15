@@ -12,7 +12,7 @@ var Enemy = function(x,y,speed) {
 
 
 Enemy.prototype.update = function(dt) {
-    // which will ensure the game runs at the same speed for
+    // which will ensure the game runs at the same speed 
     this.x += this.speed * dt; 
 
     //set place and speed of enemy
@@ -30,12 +30,8 @@ Enemy.prototype.update = function(dt) {
         player.x = 202;
         player.y = 405;
 
-        //update life here
-        var life = document.getElementById("lives").textContent;
-        newLife = Number(life) - 1;
-        document.getElementById("lives").textContent = newLife;
-
-        //if life is 0, reset the game back tod efault numbers
+        //if killed, remove a heart
+        allHearts[2] = 0;       
         
     };
 
@@ -48,13 +44,11 @@ Enemy.prototype.update = function(dt) {
         gems.x = locationColumn[arrayCol];
         gems.y = locationRow[arrayRow];
 
-        //update the score
+        //update the score every time it reaches a gem
         var score = document.getElementById("score").textContent;
         newScore = Number(score) + 10;
         document.getElementById("score").textContent = newScore;
     };
-    
-
 
 };
 
@@ -97,14 +91,36 @@ Player.prototype.handleInput = function (keyPress) {
         setTimeout(function () {
             player.x = 202;
             player.y = 405;
+
+            //when player reaches water, it levels up
+            //update level here
+            var level = document.getElementById("levels").textContent;
+            newLevel = Number(level) + 1;
+            document.getElementById("levels").textContent = newLevel;
+
         }, 100);
     }
 
 }
 
+//creating heart object
+var Hearts = function(x,y) {
+    this.x = x;
+    this.y = y;
+    this.hearts = 'images/Heart.png';
+} 
+//render all hearts on the screen
+Hearts.prototype.render = function () {
+    ctx.drawImage(Resources.get(this.hearts), this.x, this.y);
+};  
+
+Hearts.prototype.update = function () {
+    //when you die, it takes one heart off 
+}
+
 //declaring the variables for gems locations
-var locationColumn = [0, 100, 200, 300, 400, 200, 100]; 
-var locationRow = [0, 120, 220, 320, 420, 220, 320]; 
+var locationColumn = [0, 120, 220, 320, 420, 220, 120]; 
+var locationRow = [80, 150, 250, 350, 450, 250]; 
 var columnNum;
 var arrayCol;
 var rowNum;
@@ -151,11 +167,21 @@ Gems.prototype.reset = function(){
     gem.y = locationRow[arrayRow];
 };
 
+
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
+var allHearts = [];
 
 //setting enemy locations Y-axis
 var enemyLocation = [63, 147, 230];
+
+//setting heart location in X-axis
+var heartLocation = [0, 60, 120];
+
+heartLocation.forEach(function (locationX) {
+    hearts = new Hearts(locationX, 0);
+    allHearts.push(hearts); //push to allHearts array
+});
 
 enemyLocation.forEach(function (locationY) {
     enemy = new Enemy(0, locationY, 200);
@@ -164,7 +190,10 @@ enemyLocation.forEach(function (locationY) {
 
 // Place the player object in a variable called player
 var player = new Player(202, 405);
+//var hearts = new Hearts(102, 405);
 var gems = new Gems();
+
+
 
 
 
